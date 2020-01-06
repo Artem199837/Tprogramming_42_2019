@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace CourseApp
+{
+    public class Rabbit
+    {
+        private int carrot;
+        private int age;
+
+        public Rabbit()
+        : this("Неизвестно")
+        {
+        }
+
+        public Rabbit(string name)
+        : this(name, 0)
+        {
+        }
+
+        public Rabbit(string name, int age)
+        : this(name, age, 0)
+        {
+        }
+
+        public Rabbit(string name, int age, int carrot)
+        {
+            Name = name;
+            Age = age;
+            Carrot = carrot;
+        }
+
+        public int Age
+        {
+            get
+            {
+                return this.age;
+            }
+
+            set
+            {
+                if (value >= 0 && value <= 2)
+                {
+                    this.age = value;
+                }
+                else
+                {
+                    throw new System.Exception();
+                }
+            }
+        }
+
+        public string Name { get; set; }
+
+        public int Carrot
+        {
+            get
+            {
+                return this.carrot;
+            }
+
+            set
+            {
+                if (value >= 0)
+                {
+                    this.carrot = value;
+                }
+                else
+                {
+                    throw new System.Exception();
+                }
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"Имя:{Name}, Возраст:{Age}, Запасы моркови:{carrot}";
+        }
+
+        public void FoundСarrot()
+        {
+            this.Carrot++;
+        }
+    }
+}
