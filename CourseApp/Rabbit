@@ -1,0 +1,87 @@
+using System;
+using Xunit;
+
+namespace CourseApp.Tests
+{
+    public class RabbitTest
+    {
+        [Theory]
+        [InlineData("Name", 1, 152)]
+        [InlineData("Name1", 2, 4323)]
+        public void TestConstructorThreeParametrs(string name, int age, int carrot)
+        {
+            var item = new Rabbit(name, age, carrot);
+            Assert.Equal(age, item.Age);
+            Assert.Equal(name, item.Name);
+            Assert.Equal(carrot, item.Carrot);
+        }
+
+        [Fact]
+        public void TestConstructorTwoParametrs()
+        {
+            var item = new Rabbit("Name2", 1);
+            Assert.Equal(1, item.Age);
+            Assert.Equal("Name2", item.Name);
+            Assert.Equal(0, item.Carrot);
+        }
+
+        [Fact]
+        public void TestConstructorOneParametrs()
+        {
+            var item = new Rabbit("Name3");
+            Assert.Equal(0, item.Age);
+            Assert.Equal("Name3", item.Name);
+            Assert.Equal(0, item.Carrot);
+        }
+
+        [Fact]
+        public void TestEmptyConstructor()
+        {
+            var item = new Rabbit();
+            Assert.Equal(0, item.Age);
+            Assert.Equal("Неизвестно", item.Name);
+            Assert.Equal(0, item.Carrot);
+        }
+
+        [Fact]
+        public void TestSetAge()
+        {
+            var item = new Rabbit();
+            item.Age = 1;
+            Assert.Equal(1, item.Age);
+        }
+
+        [Fact]
+        public void TestIncorrectSetAge()
+        {
+            try
+            {
+                var item = new Rabbit();
+                item.Age = -5;
+            }
+            catch (System.Exception)
+            {
+                Console.WriteLine("Age should be >= 0");
+                Assert.True(true);
+            }
+        }
+
+        [Fact]
+        public void TestCorrectIncorrectSetAge()
+        {
+            var item = new Rabbit();
+            try
+            {
+                item.Age = 1;
+                item.Age = -5;
+            }
+            catch (System.Exception)
+            {
+                Console.WriteLine("Age should be >= 0");
+                Assert.True(true);
+            }
+
+            Assert.Equal(1, item.Age);
+        }
+    }
+}
